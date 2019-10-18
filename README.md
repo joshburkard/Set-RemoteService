@@ -54,12 +54,6 @@ Accept wildcard characters?  false
 
 which action should be executed
 
-allows this actions:
-
-- START
-- STOP
-- RESTART
-
 this parameter is not mandatory. if not defined, the default 'Start' will be used
 
 ```
@@ -68,6 +62,11 @@ Position?                    4
 Default value
 Accept pipeline input?       false
 Accept wildcard characters?  false
+
+valid values:
+- START
+- STOP
+- RESTART
 ```
 
 ## examples

@@ -4,6 +4,72 @@
 
 This script allows it to set the status of a service on a remote computer
 
+## parameters
+
+### -ComputerName [string]
+
+defines the name of the computer
+
+this parameter is not mandatory. if it is empty, the script will prompt for the name
+
+user **.** (a single point) for the local computer
+
+```
+Required?                    false
+Position?                    1
+Default value
+Accept pipeline input?       false
+Accept wildcard characters?  false
+```
+
+### -ServiceName [string]
+
+ defines the name of the service
+
+this parameter is not mandatory. if it is empty, the script will prompt for the name
+
+```
+Required?                    false
+Position?                    2
+Default value
+Accept pipeline input?       false
+Accept wildcard characters?  false
+```
+
+### -Credential [System.Management.Automation.PSCredential]
+
+defines the credential to access the remote computer
+
+this parameter is not mandatory. if not defined the current users credentials will be used
+
+```
+Required?                    false
+Position?                    3
+Default value
+Accept pipeline input?       false
+Accept wildcard characters?  false
+```
+
+### -Action [string]
+
+which action should be executed
+
+allows this actions:
+
+- START
+- STOP
+- RESTART
+
+this parameter is not mandatory. if not defined, the default 'Start' will be used
+
+```
+Required?                    false
+Position?                    4
+Default value
+Accept pipeline input?       false
+Accept wildcard characters?  false
+```
+
 ## examples
 
 ### without parameters

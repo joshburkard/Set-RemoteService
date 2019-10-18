@@ -31,15 +31,15 @@
 
     .EXAMPLE
         # prompts for input
-        .\Start-RemoteService.ps1
+        .\Set-RemoteService.ps1
 
     .EXAMPLE
         # start a service on the local computer
-        .\Start-RemoteService.ps1 -ComputerName . -ServiceName 'BITS' -Action START
+        .\Set-RemoteService.ps1 -ComputerName . -ServiceName 'BITS' -Action START
 
     .EXAMPLE
         # start a service on a remote computer
-        .\Start-RemoteService.ps1 -ComputerName 'server.domain.net' -ServiceName 'BITS' -Action START
+        .\Set-RemoteService.ps1 -ComputerName 'server.domain.net' -ServiceName 'BITS' -Action START
 
     .EXAMPLE
         # start a service on a remote computer with different credentials
@@ -47,7 +47,18 @@
         # or
         $Credential = New-Object System.Management.Automation.PSCredential ( $Username, ( ConvertTo-SecureString $Password -AsPlainText -Force ) )
 
-        .\Start-RemoteService.ps1 -ComputerName 'server.domain.net' -ServiceName 'BITS' -Action START -Credential $Credential
+        .\Set-RemoteService.ps1 -ComputerName 'server.domain.net' -ServiceName 'BITS' -Action START -Credential $Credential
+
+    .NOTES
+        File-Name:  Set-RemoteService.ps1
+        Author:     Josh Burkard - josh@burkard.it
+        Version:    1.0.0
+
+        Changelog:
+            1.0.0, 2019-10-18, Josh Burkard, initial creation
+
+        Links:
+            https://github.com/joshburkard/Set-RemoteService
 #>
 [CmdletBinding()]
 Param (

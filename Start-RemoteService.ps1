@@ -78,7 +78,7 @@ try {
         }
     }
     if ( $ExitCode -eq 0 ) {
-        if ( ( $ComputerName -ne $env:COMPUTERNAME ) -and ( [string]::IsNullOrEmpty( $Credential ) ) ) {
+        if ( ( $PSBoundParameters.Keys -notcontains 'ComputerName' ) -and ( $PSBoundParameters.Keys -notcontains 'ServiceName' ) -and ( $ComputerName -ne $env:COMPUTERNAME ) -and ( [string]::IsNullOrEmpty( $Credential ) ) ) {
             $diffCred = Read-Host -Prompt "do you need different credentials? [Y]/[N]"
             if ( $diffCred -eq 'Y' ) {
                 $Credential = Get-Credential
@@ -143,13 +143,23 @@ try {
         }
         catch {
             Write-Host "couldn't $( $Action.ToLower() ) the service '$( $ServiceName )" -ForegroundColor Red
-            Write-Host $Error -ForegroundColor Red
+            Write-Host $Error[0].InvocationInfo.Line -ForegroundColor Red
+            Write-Host $Error[0].Exception.Message -ForegroundColor Red
+            Write-Host $Error[0].Exception.StackTrace -ForegroundColor Red
         }
     }
-    Exit-PSSession
+    try {
+        Exit-PSSession
+        Write-Host 'disconnected from remote computer' -ForegroundColor Green
+    }
+    catch {
+        Write-Host 'not connected to remote computer' -ForegroundColor Cyan
+    }
 }
 catch {
     Write-Host "unexpected error occured" -ForegroundColor Red
-    Write-Host $Error -ForegroundColor Red
+    Write-Host $Error[0].InvocationInfo.Line -ForegroundColor Red
+    Write-Host $Error[0].Exception.Message -ForegroundColor Red
+    Write-Host $Error[0].Exception.StackTrace -ForegroundColor Red
     return $ExitCode
 }
